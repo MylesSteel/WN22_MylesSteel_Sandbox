@@ -276,3 +276,4 @@ Received Import Request.
 Start importing Assets/Presets/UtilityTexture.preset using Guid(45f7b2e3c78185248b3adbb14429c2ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'ab9c1faeeb59b745cafa0ae79c874a42') in 0.002967 seconds 
   Import took 0.005697 seconds .
 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
