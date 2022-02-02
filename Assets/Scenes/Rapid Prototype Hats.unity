@@ -14078,6 +14078,61 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &533655988 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6174039254939781155, guid: 66c0341f533c270468a4cef7c22b79c9, type: 3}
+  m_PrefabInstance: {fileID: 1192685806}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &533655989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533655988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2213c36610e3b1c4bbf886810ed9db12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_System: {fileID: 533655994}
+  m_TurnAmount: 45
+  m_DebounceTime: 0.5
+  m_EnableTurnLeftRight: 1
+  m_EnableTurnAround: 1
+  m_LeftHandSnapTurnAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Left Hand Snap Turn
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: a1d07c24-ca50-422a-a23f-685d9fabf63b
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+    m_Reference: {fileID: 1010738217276881514, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  m_RightHandSnapTurnAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Right Hand Snap Turn
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: a7b54797-6974-4f75-81d0-42b9c15ef1e0
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+    m_Reference: {fileID: -6493913391331992944, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+--- !u!114 &533655994 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6174039254939781180, guid: 66c0341f533c270468a4cef7c22b79c9, type: 3}
+  m_PrefabInstance: {fileID: 1192685806}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 533655988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03a5df2202a8b96488c744be3bd0c33e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &534586795
 GameObject:
   m_ObjectHideFlags: 0
@@ -30588,6 +30643,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6174039254939781155, guid: 66c0341f533c270468a4cef7c22b79c9, type: 3}
       propertyPath: m_StaticEditorFlags
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6174039254939781175, guid: 66c0341f533c270468a4cef7c22b79c9, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6174039254939781177, guid: 66c0341f533c270468a4cef7c22b79c9, type: 3}
