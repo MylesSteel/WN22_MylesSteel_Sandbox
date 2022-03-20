@@ -12,5 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 1488926636, guid: c424820a8880b8845bda10ec0b41507e, type: 3}
   m_Name: NormcoreAppSettings
   m_EditorClassIdentifier: 
+<<<<<<< Updated upstream
   _normcoreAppKey: '74caaddd-cd26-4ed8-a485-d400226b9aee '
+=======
+  _normcoreAppKey: 74caaddd-cd26-4ed8-a485-d400226b9aee
+>>>>>>> Stashed changes
   _matcherURL: wss://normcore-matcher.normcore.io:3000
