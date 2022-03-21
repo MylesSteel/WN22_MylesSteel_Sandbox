@@ -32,7 +32,7 @@ public class AgentChase : MonoBehaviour
         {
             if (Vector3.Distance(_enemy.transform.position, _player.transform.position) < 1)
             {
-                _attack.Play("fall", 1);
+               // _attack.SetBool
             }
         }
 
