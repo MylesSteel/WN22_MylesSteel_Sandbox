@@ -30,11 +30,17 @@ public class AgentChase : MonoBehaviour
         }
         else
         {
-            if (Vector3.Distance(_enemy.transform.position, _player.transform.position) < 1)
+            if (Vector3.Distance(_enemy.transform.position, _player.transform.position) < 2)
             {
-               // _attack.SetBool
+                _attack.SetBool("attack", true);
+
+            }
+            if (Vector3.Distance(_enemy.transform.position, _player.transform.position) > 2)
+            {
+                _attack.SetBool("attack", false);
             }
         }
 
     }
+    
 }
