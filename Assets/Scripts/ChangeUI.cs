@@ -51,7 +51,7 @@ public class ChangeUI : MonoBehaviour
     
     public void QuiteGame()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+       // UnityEditor.EditorApplication.isPlaying = false;
     }
 
 }

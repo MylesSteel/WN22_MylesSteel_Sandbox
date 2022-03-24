@@ -83,8 +83,8 @@ public class SaveSerial : MonoBehaviour
 
     public void QuitGame()
     {
-        SaveGame();
-        UnityEditor.EditorApplication.isPlaying = false;
+        //SaveGame();
+        //UnityEditor.EditorApplication.isPlaying = false;
         // Application.Quit();
     }
 }

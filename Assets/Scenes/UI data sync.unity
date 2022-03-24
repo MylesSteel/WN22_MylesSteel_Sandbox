@@ -244,7 +244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3903a296130237c428a98ef061841af5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intToSave: 8
+  intToSave: 0
   floatToSave: 0
   stringToSave: 
   floatText: {fileID: 350795449}

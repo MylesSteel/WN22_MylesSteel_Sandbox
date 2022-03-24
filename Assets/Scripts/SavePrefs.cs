@@ -78,15 +78,15 @@ public class SavePrefs : MonoBehaviour
    
     IEnumerator UpdateUI()
     {
-         
+         ui.intSlider.value = ui.intToSave;
+            yield return new WaitForSeconds(0.1f);
+        ui.floatSlider.value = ui.floatToSave;
+        
         ui.intText.text = ui.intToSave.ToString();
         yield return new WaitForSeconds(0.1f);
         ui.floatText.text = ui.floatToSave.ToString();
             yield return new WaitForSeconds(0.1f);
-        ui.intSlider.value = ui.intToSave;
-            yield return new WaitForSeconds(0.1f);
-        ui.floatSlider.value = ui.floatToSave;
-        Debug.Log(ui.floatToSave);
+       Debug.Log(ui.floatToSave); 
         //preamble.text = "Enter Name";
 
     }
