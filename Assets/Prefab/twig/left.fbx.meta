@@ -15,6 +15,9 @@ ModelImporter:
   - first:
       74: -6993090946979842912
     second: Armature.001|walk
+  - first:
+      74: 7104086545620952204
+    second: Armature.001|walk (1)
   externalObjects: {}
   materials:
     materialImportMode: 2
@@ -44,11 +47,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: left
-      takeName: left
+      name: Armature.001|walk (1)
+      takeName: Armature.001|walk
       internalID: 0
       firstFrame: 0
-      lastFrame: 129
+      lastFrame: 166
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -153,7 +156,32 @@ ModelImporter:
       heightFromFeet: 0
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
-      curves: []
+      curves:
+      - name: Curve
+        curve:
+          serializedVersion: 2
+          curve:
+          - serializedVersion: 3
+            time: -1.5124521
+            value: -9.9594555
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          - serializedVersion: 3
+            time: -0.5254203
+            value: -9.958748
+            inSlope: 0
+            outSlope: 0
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0
+          preInfinity: 3
+          postInfinity: 3
+          rotationOrder: 4
       events: []
       transformMask: []
       maskType: 3

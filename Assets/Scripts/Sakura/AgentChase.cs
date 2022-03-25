@@ -25,11 +25,8 @@ public class AgentChase : MonoBehaviour
         if (Vector3.Distance(_enemy.transform.position, _player.transform.position) < 100) //add tag for war on empty
         {
             _agent.SetDestination(_player.transform.position);
-            
-           
-        }
-        else
-        {
+            _attack.SetBool("move", true);
+           {
             if (Vector3.Distance(_enemy.transform.position, _player.transform.position) < 2)
             {
                 _attack.SetBool("attack", true);
@@ -38,8 +35,12 @@ public class AgentChase : MonoBehaviour
             if (Vector3.Distance(_enemy.transform.position, _player.transform.position) > 2)
             {
                 _attack.SetBool("attack", false);
+            _attack.SetBool("move", true);
             }
         }
+        }
+       // else
+        
 
     }
     
