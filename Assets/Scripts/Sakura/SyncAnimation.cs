@@ -7,12 +7,16 @@ public class SyncAnimation : RealtimeComponent<SyncAnimationModel>
 {
     public Realtime _realtime;
     public RealtimeTransform _ownAnimation;
-    public void GetClient()
+
+    public void OnEnable()
     {
-        
-        if(realtime.clientID == 0)
+        if(_realtime.clientID == 0)
         {
             _ownAnimation.RequestOwnership();
+        }
+        else
+        {
+            
         }
     }
 }

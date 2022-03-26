@@ -9,14 +9,23 @@ public class AgentChase : MonoBehaviour
     [SerializeField] GameObject _player;      //do it with a tag later
     [SerializeField] NavMeshAgent _agent;
     [SerializeField] Realtime _rt;
-    [SerializeField] RealtimeTransform _rtTransform;
+    [SerializeField] RealtimeTransform _ownAnimation;
     [SerializeField] GameObject _enemy;
     [SerializeField] Animator _attack;
+    public bool _isLocal = true;
     Vector3 _target;
     // Start is called before the first frame update
-    void Start()
+    public void OnEnable()
     {
-
+        if (_rt.clientID == 0)
+        {
+            _ownAnimation.RequestOwnership();
+        }
+        else
+        {
+            _agent.enabled = false;
+            _isLocal = false;
+        }
     }
 
     // Update is called once per frame
@@ -45,3 +54,4 @@ public class AgentChase : MonoBehaviour
     }
     
 }
+//for each loop clients to find distance in update. create buffer time so that chase occurse on the closest client after a delay. May require two for each loops.
