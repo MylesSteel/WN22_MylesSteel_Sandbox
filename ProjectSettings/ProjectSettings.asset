@@ -159,6 +159,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
+    Android: com.MylesSteel.WN22_MylesSteel_Sandbox
     Standalone: com.MylesSteel.WN22MylesSteelSandbox
   buildNumber:
     Standalone: 0
