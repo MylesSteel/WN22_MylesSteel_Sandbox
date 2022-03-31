@@ -13,6 +13,7 @@ public class AgentChase : MonoBehaviour
     [SerializeField] GameObject _enemy;
     [SerializeField] Animator _attack;
     public bool _isLocal = true;
+    public bool _isStunned = false;
     Vector3 _target;
     // Start is called before the first frame update
     public void OnEnable()
@@ -31,11 +32,11 @@ public class AgentChase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(_enemy.transform.position, _player.transform.position) < 100) //add tag for war on empty
+        if (Vector3.Distance(_enemy.transform.position, _player.transform.position) < 100 && _isStunned == false) //add tag for war on empty
         {
             _agent.SetDestination(_player.transform.position);
             _attack.SetBool("move", true);
-           {
+           
             if (Vector3.Distance(_enemy.transform.position, _player.transform.position) < 2)
             {
                 _attack.SetBool("attack", true);
@@ -44,10 +45,17 @@ public class AgentChase : MonoBehaviour
             if (Vector3.Distance(_enemy.transform.position, _player.transform.position) > 2)
             {
                 _attack.SetBool("attack", false);
-            _attack.SetBool("move", true);
+                _attack.SetBool("move", true);
             }
+           
         }
+        if (_isStunned == true)
+        {
+            _attack.SetBool("fall", true);
+            _attack.SetBool("attack", false);
+            _attack.SetBool("move", false);
         }
+
        // else
         
 
