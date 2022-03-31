@@ -2,11 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AnimationSaving : MonoBehaviour
+public class SaveAnimationData : MonoBehaviour
 {
     public Animator _danceFloor;
     public int _start, _char, _obj;
     [SerializeField] string parameter;
+
     
     //set starting states of state machine which will use int values per function to determine when to change bool states. ss = start/stop c = character and o = object
     void Awake()
