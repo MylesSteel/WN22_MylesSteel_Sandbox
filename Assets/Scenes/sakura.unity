@@ -151,7 +151,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6174039254939781155, guid: 66c0341f533c270468a4cef7c22b79c9, type: 3}
       propertyPath: m_TagString
-      value: Untagged
+      value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6174039254939781175, guid: 66c0341f533c270468a4cef7c22b79c9, type: 3}
       propertyPath: m_Enabled
@@ -175,7 +175,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6174039254939781177, guid: 66c0341f533c270468a4cef7c22b79c9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.28
+      value: 10.3
       objectReference: {fileID: 0}
     - target: {fileID: 6174039254939781177, guid: 66c0341f533c270468a4cef7c22b79c9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -183,7 +183,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6174039254939781177, guid: 66c0341f533c270468a4cef7c22b79c9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.18000002
+      value: 91.1
       objectReference: {fileID: 0}
     - target: {fileID: 6174039254939781177, guid: 66c0341f533c270468a4cef7c22b79c9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -299,13 +299,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fdef619605ef1744b12c46adfe2e1d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _player: {fileID: 0}
+  _player: {fileID: 1011421773}
   _agent: {fileID: 919132149016225204}
   _rt: {fileID: 2344829}
   _ownAnimation: {fileID: 919132149016225205}
   _enemy: {fileID: 919132149016225203}
   _attack: {fileID: 598950455}
   _isLocal: 1
+  _isStunned: 0
 --- !u!4 &644254532 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6174039254633538690, guid: 66c0341f533c270468a4cef7c22b79c9, type: 3}
@@ -1835,6 +1836,7 @@ MonoBehaviour:
   _enemy: {fileID: 919132147777006773}
   _attack: {fileID: 0}
   _isLocal: 1
+  _isStunned: 0
 --- !u!114 &919132147777006776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1898,7 +1900,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!195 &919132149016225204
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1977,7 +1979,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _realtime: {fileID: 2344829}
-  _animator: {fileID: 0}
+  _animator: {fileID: 598950455}
 --- !u!1 &936179103615245945
 GameObject:
   m_ObjectHideFlags: 0

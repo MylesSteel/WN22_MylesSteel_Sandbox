@@ -40,12 +40,13 @@ public class AgentChase : MonoBehaviour
             if (Vector3.Distance(_enemy.transform.position, _player.transform.position) < 2)
             {
                 _attack.SetBool("attack", true);
-
+                _agent.enabled = false;
             }
             if (Vector3.Distance(_enemy.transform.position, _player.transform.position) > 2)
             {
                 _attack.SetBool("attack", false);
                 _attack.SetBool("move", true);
+                _agent.enabled = true;
             }
            
         }
@@ -54,6 +55,7 @@ public class AgentChase : MonoBehaviour
             _attack.SetBool("fall", true);
             _attack.SetBool("attack", false);
             _attack.SetBool("move", false);
+            _agent.enabled = false;
         }
 
        // else

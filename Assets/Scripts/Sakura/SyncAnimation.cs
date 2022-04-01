@@ -6,6 +6,7 @@ using System;
 
 public class SyncAnimation : RealtimeComponent<SyncAnimationModel>
 {
+    private SyncAnimationModel _aniModel;
     public Realtime _realtime;
     public Animator _animator;
 
@@ -19,20 +20,34 @@ public class SyncAnimation : RealtimeComponent<SyncAnimationModel>
         model.attack = true;
         ToggleAttack();
     }
-
-    private void ToggleAttack()
+    private SyncAnimationModel modelWalk
     {
-        if (model.attack == true)
+        set
         {
-            _animator.SetBool("attack,", true);
-        }
-        else
-        {
-            _animator.SetBool("attack", false);
-            model.attack = false;
+            if (_aniModel != null)
+            {
+                _aniModel.walkDidChange -= WalkChanged;
+            }
         }
     }
-
+    private SyncAnimationModel modelAttack
+    {
+        set
+        {
+            if (_aniModel != null)
+            {
+                _aniModel.attackDidChange -= AttackChanged;
+            }
+        }
+    }
+    private void WalkChanged(SyncAnimationModel model, bool value)
+    {
+        ToggleWalk();
+    }
+    private void AttackChanged(SyncAnimationModel model, bool value)
+    {
+        ToggleAttack();
+    }
     void ToggleWalk()
     {
         if(model.walk == true)
@@ -43,6 +58,18 @@ public class SyncAnimation : RealtimeComponent<SyncAnimationModel>
         {
             _animator.SetBool("walk", false);
             model.walk = false;
+        }
+    }  
+    private void ToggleAttack()
+    {
+        if (model.attack == true)
+        {
+            _animator.SetBool("attack,", true);
+        }
+        else
+        {
+            _animator.SetBool("attack", false);
+            model.attack = false;
         }
     }
 }
