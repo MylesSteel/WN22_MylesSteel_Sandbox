@@ -24,7 +24,7 @@ public class AgentChase : MonoBehaviour
         }
         else
         {
-            _agent.enabled = false;
+            //_agent.enabled = false;
             _isLocal = false;
         }
     }
@@ -32,7 +32,7 @@ public class AgentChase : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Vector3.Distance(_enemy.transform.position, _player.transform.position) < 100 && _isStunned == false) //add tag for war on empty
+        if (Vector3.Distance(_enemy.transform.position, _player.transform.position) < 25 && _isStunned == false) //add tag for war on empty
         {
             _agent.SetDestination(_player.transform.position);
             _attack.SetBool("move", true);
@@ -40,13 +40,13 @@ public class AgentChase : MonoBehaviour
             if (Vector3.Distance(_enemy.transform.position, _player.transform.position) < 2)
             {
                 _attack.SetBool("attack", true);
-                _agent.enabled = false;
+                //_agent.enabled = false;
             }
             if (Vector3.Distance(_enemy.transform.position, _player.transform.position) > 2)
             {
                 _attack.SetBool("attack", false);
                 _attack.SetBool("move", true);
-                _agent.enabled = true;
+                //_agent.enabled = true;
             }
            
         }
