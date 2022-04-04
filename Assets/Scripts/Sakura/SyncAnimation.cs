@@ -9,15 +9,18 @@ public class SyncAnimation : RealtimeComponent<SyncAnimationModel>
     private SyncAnimationModel _aniModel;
     public Realtime _realtime;
     public Animator _animator;
-
+    public void Start()
+    {
+        
+    }
     public void SetWalkBool()
     {
-        model.walk = true;
+        //model.walk = true;
         ToggleWalk();
     }
     public void SetAttackBool()
     {
-        model.attack = true;
+        //model.attack = true;
         ToggleAttack();
     }
     private SyncAnimationModel modelWalk
@@ -50,26 +53,27 @@ public class SyncAnimation : RealtimeComponent<SyncAnimationModel>
     }
     void ToggleWalk()
     {
-        if(model.walk == true)
+        if(_animator.GetBool("move") == true)
         {
-            _animator.SetBool("walk,", true);
+            model.walk = true;
+
+            
         }
-        else
+        if (_animator.GetBool("move") == false)
         {
-            _animator.SetBool("walk", false);
-            model.walk = false;
+            model.walk = false; 
         }
     }  
     private void ToggleAttack()
     {
-        if (model.attack == true)
+        if (_animator.GetBool("attack") == true)
         {
-            _animator.SetBool("attack,", true);
-        }
-        else
-        {
-            _animator.SetBool("attack", false);
-            model.attack = false;
+            model.attack = true;
+
+            if (_animator.GetBool("attack") == false)
+            {
+                model.attack = false;
+            }
         }
     }
 }
