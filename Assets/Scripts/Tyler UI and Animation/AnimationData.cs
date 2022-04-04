@@ -60,7 +60,7 @@ public class AnimationData : MonoBehaviour
     }
     public void QuitGame()
     {
-        UnityEditor.EditorApplication.isPlaying = false;
+        //UnityEditor.EditorApplication.isPlaying = false;
         
     }
 }
