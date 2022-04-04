@@ -7,8 +7,8 @@ using Normal.Realtime;
 [RealtimeModel]
 public partial class SyncAnimationModel
 {
-    [RealtimeProperty(1, false, true)]
-    bool _walk;
+    [RealtimeProperty(1, false, true)]    // when in realtime bool changes from idle to waling with move paramater. it does this 
+    bool _walk;                           // once and continues to walk. 
     [RealtimeProperty(2, false, true)]
     bool _attack;
     //[RealtimeProperty(3, true, true)]

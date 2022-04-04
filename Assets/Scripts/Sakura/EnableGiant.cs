@@ -7,7 +7,8 @@ public class EnableGiant : MonoBehaviour
     [SerializeField] GameObject _giant;
     
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) //sets trigger zone to enable giant. this is needed so all clients have joined before
+                                                //ownership is claimed by client 0. 
     {
         if (other.gameObject.tag == "Player")
         {

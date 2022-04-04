@@ -55,9 +55,8 @@ public class SyncAnimation : RealtimeComponent<SyncAnimationModel>
     {
         if(_animator.GetBool("move") == true)
         {
-            model.walk = true;
+            model.walk = true; //this is where the error thows too. (is it how i named my model?)
 
-            
         }
         if (_animator.GetBool("move") == false)
         {

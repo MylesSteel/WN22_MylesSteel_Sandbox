@@ -7,7 +7,7 @@ public class WalkAnimationSound : MonoBehaviour
     [SerializeField] AudioSource _walkSound;
 
     // Start is called before the first frame update
-    private void FootStepSound()
+    private void FootStepSound() // function to be called in animation event. not sure if this is working. 
     {
         _walkSound.Play();
     }
