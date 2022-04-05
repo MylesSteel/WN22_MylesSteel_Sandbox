@@ -56,7 +56,7 @@ public class AgentChase : RealtimeComponent<SyncAnimationModel> //MonoBehaviour
         if (previousModel != null)
         {
             previousModel.walkDidChange -= WalkDidChange;
-            previousModel.attackDidChange -= AttachDidChange;
+            previousModel.attackDidChange -= AttackDidChange;
             previousModel.fallDidChange -= FallDidChange;
         }
         if (currentModel != null)
@@ -68,8 +68,8 @@ public class AgentChase : RealtimeComponent<SyncAnimationModel> //MonoBehaviour
                 model.fall = false;
             }
             currentModel.walkDidChange += WalkDidChange;
-            currentModel.attackDidChange += AttachDidChange;
-            currentModel.fallDidChange += WalkDidChange;
+            currentModel.attackDidChange += AttackDidChange;
+            currentModel.fallDidChange += FallDidChange;
         }
     }
 
@@ -78,7 +78,7 @@ public class AgentChase : RealtimeComponent<SyncAnimationModel> //MonoBehaviour
         _attack.SetBool("fall", value);
     }
 
-    private void AttachDidChange(SyncAnimationModel model, bool value)
+    private void AttackDidChange(SyncAnimationModel model, bool value)
     {
         _attack.SetBool("attack", value);
     }
@@ -92,32 +92,29 @@ public class AgentChase : RealtimeComponent<SyncAnimationModel> //MonoBehaviour
     void Update()
        
     {
-        //if (_inRange == true)
-        //{
-        //    _agent.speed = 1.25f;
-        //}
-        //else
-        //{
-        //    _agent.speed = 1.25f;
-        //}
-        if (_isStunned == true)
-            {
-                //_attack.SetBool("fall", true);
-                //_attack.SetBool("attack", false);
-                //_inRange = false;
-                model.fall = true;
-                model.walk = false;
-                model.attack = false;
-                _agent.speed = 0f;
-                _agent.angularSpeed = 0f;
-                //_attack.SetBool("move", false);
-            }
+         if (_isStunned == true && _isLocal)
+         {
+            Debug.Log("Has been stunned");
+            //_attack.SetBool("fall", true);
+            //_attack.SetBool("attack", false);
+            //_inRange = false;
+            model.fall = true;
+            //model.walk = true;
+            //model.attack = false;
+            _agent.speed = 0f;
+            _agent.angularSpeed = 0f;
+            //_attack.SetBool("move", false);
+         }
+        else
+        {
+            model.fall = false;
+        }
         if (Vector3.Distance(_enemy.transform.position, _player.transform.position) < 25 && _isStunned == false && _isLocal) //add tag for war on empty
         {
             _agent.SetDestination(_player.transform.position);
             //_inRange = true;
-            _agent.speed = 1.25f;
-            _agent.angularSpeed = 35.5f;
+            _agent.speed = 1.1f;
+            _agent.angularSpeed = 20f;
             //_attack.SetBool("fall", false);
             model.walk = true; // _attack.SetBool("move", true);
             //_rtAni.SetWalkBool();
@@ -132,13 +129,13 @@ public class AgentChase : RealtimeComponent<SyncAnimationModel> //MonoBehaviour
                 //_inRange = false;
                 //_enemy.transform.position = _agent.nextPosition;
                 //_rtAni.SetWalkBool();
-               // _rtAni.SetAttackBool();
+                // _rtAni.SetAttackBool();
             }
             if (Vector3.Distance(_enemy.transform.position, _player.transform.position) > 2) // return to walking. attack animation has exit time.
             {
                 model.attack = false;
-                _agent.angularSpeed = 35.5f;
-                _agent.speed = 1.25f;
+                _agent.angularSpeed = 20f;
+                _agent.speed = 1.1f;
                 //model.walk = true;
                 //_attack.SetBool("attack", false);
                 // _attack.SetBool("move", true);
@@ -146,6 +143,7 @@ public class AgentChase : RealtimeComponent<SyncAnimationModel> //MonoBehaviour
                 //_rtAni.SetAttackBool();
                 //_rtAni.SetWalkBool();
             }
+           
            
         }
         //if (Vector3.Distance(_enemy.transform.position, _player.transform.position) > 25 && _isStunned == false) // idle state
