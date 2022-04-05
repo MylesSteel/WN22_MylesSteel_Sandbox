@@ -57,6 +57,7 @@ public class AgentChase : RealtimeComponent<SyncAnimationModel> //MonoBehaviour
         {
             previousModel.walkDidChange -= WalkDidChange;
             previousModel.attackDidChange -= AttachDidChange;
+            previousModel.fallDidChange -= FallDidChange;
         }
         if (currentModel != null)
         {
@@ -64,20 +65,27 @@ public class AgentChase : RealtimeComponent<SyncAnimationModel> //MonoBehaviour
             {
                 model.attack = false;
                 model.walk = false;
+                model.fall = false;
             }
             currentModel.walkDidChange += WalkDidChange;
             currentModel.attackDidChange += AttachDidChange;
+            currentModel.fallDidChange += WalkDidChange;
         }
+    }
+
+    private void FallDidChange(SyncAnimationModel model, bool value)
+    {
+        _attack.SetBool("fall", value);
     }
 
     private void AttachDidChange(SyncAnimationModel model, bool value)
     {
-        _attack.SetBool("attack", true);
+        _attack.SetBool("attack", value);
     }
 
     private void WalkDidChange(SyncAnimationModel model, bool value)
     {
-        _attack.SetBool("move", true);
+        _attack.SetBool("move", value);
     }
 
     // Update is called once per frame
@@ -93,44 +101,50 @@ public class AgentChase : RealtimeComponent<SyncAnimationModel> //MonoBehaviour
         //    _agent.speed = 1.25f;
         //}
         if (_isStunned == true)
-        {
-            _attack.SetBool("fall", true);
-            //_attack.SetBool("attack", false);
-            //_inRange = false;
-            _agent.speed = 0f;
-            //_attack.SetBool("move", false);
-
-        }
+            {
+                //_attack.SetBool("fall", true);
+                //_attack.SetBool("attack", false);
+                //_inRange = false;
+                model.fall = true;
+                model.walk = false;
+                model.attack = false;
+                _agent.speed = 0f;
+                _agent.angularSpeed = 0f;
+                //_attack.SetBool("move", false);
+            }
         if (Vector3.Distance(_enemy.transform.position, _player.transform.position) < 25 && _isStunned == false && _isLocal) //add tag for war on empty
         {
             _agent.SetDestination(_player.transform.position);
             //_inRange = true;
             _agent.speed = 1.25f;
-            _attack.SetBool("fall", false);
+            _agent.angularSpeed = 35.5f;
+            //_attack.SetBool("fall", false);
             model.walk = true; // _attack.SetBool("move", true);
             //_rtAni.SetWalkBool();
            
+            
             if (Vector3.Distance(_enemy.transform.position, _player.transform.position) < 2 && model.walk)
             {
                 model.attack = true; // _attack.SetBool("attack", true);
                 //_attack.SetBool("move", false);
                 _agent.speed = 0f;
+                _agent.angularSpeed = 0f;
                 //_inRange = false;
                 //_enemy.transform.position = _agent.nextPosition;
                 //_rtAni.SetWalkBool();
                // _rtAni.SetAttackBool();
-                
             }
             if (Vector3.Distance(_enemy.transform.position, _player.transform.position) > 2) // return to walking. attack animation has exit time.
             {
                 model.attack = false;
-                _attack.SetBool("attack", false);
-               // _attack.SetBool("move", true);
+                _agent.angularSpeed = 35.5f;
                 _agent.speed = 1.25f;
+                //model.walk = true;
+                //_attack.SetBool("attack", false);
+                // _attack.SetBool("move", true);
                 //_inRange = true;
                 //_rtAni.SetAttackBool();
                 //_rtAni.SetWalkBool();
-
             }
            
         }

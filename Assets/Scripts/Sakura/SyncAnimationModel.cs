@@ -7,11 +7,12 @@ using Normal.Realtime;
 [RealtimeModel]
 public partial class SyncAnimationModel
 {
-    [RealtimeProperty(1, false, true)]    // when in realtime bool changes from idle to waling with move paramater. it does this 
-    bool _walk;                           // once and continues to walk. 
+    [RealtimeProperty(1, false, true)]    
+    bool _walk;                           
     [RealtimeProperty(2, false, true)]
     bool _attack;
-    //[RealtimeProperty(3, true, true)]
+    [RealtimeProperty(3, false, true)]
+    bool _fall;
 }
 
 
@@ -41,13 +42,27 @@ public partial class SyncAnimationModel : RealtimeModel {
         }
     }
     
+    public bool fall {
+        get {
+            return _fallProperty.value;
+        }
+        set {
+            if (_fallProperty.value == value) return;
+            _fallProperty.value = value;
+            InvalidateUnreliableLength();
+            FireFallDidChange(value);
+        }
+    }
+    
     public delegate void PropertyChangedHandler<in T>(SyncAnimationModel model, T value);
     public event PropertyChangedHandler<bool> walkDidChange;
     public event PropertyChangedHandler<bool> attackDidChange;
+    public event PropertyChangedHandler<bool> fallDidChange;
     
     public enum PropertyID : uint {
         Walk = 1,
         Attack = 2,
+        Fall = 3,
     }
     
     #region Properties
@@ -56,11 +71,14 @@ public partial class SyncAnimationModel : RealtimeModel {
     
     private UnreliableProperty<bool> _attackProperty;
     
+    private UnreliableProperty<bool> _fallProperty;
+    
     #endregion
     
     public SyncAnimationModel() : base(null) {
         _walkProperty = new UnreliableProperty<bool>(1, _walk);
         _attackProperty = new UnreliableProperty<bool>(2, _attack);
+        _fallProperty = new UnreliableProperty<bool>(3, _fall);
     }
     
     private void FireWalkDidChange(bool value) {
@@ -79,10 +97,19 @@ public partial class SyncAnimationModel : RealtimeModel {
         }
     }
     
+    private void FireFallDidChange(bool value) {
+        try {
+            fallDidChange?.Invoke(this, value);
+        } catch (System.Exception exception) {
+            UnityEngine.Debug.LogException(exception);
+        }
+    }
+    
     protected override int WriteLength(StreamContext context) {
         var length = 0;
         length += _walkProperty.WriteLength(context);
         length += _attackProperty.WriteLength(context);
+        length += _fallProperty.WriteLength(context);
         return length;
     }
     
@@ -90,6 +117,7 @@ public partial class SyncAnimationModel : RealtimeModel {
         var writes = false;
         writes |= _walkProperty.Write(stream, context);
         writes |= _attackProperty.Write(stream, context);
+        writes |= _fallProperty.Write(stream, context);
         if (writes) InvalidateContextLength(context);
     }
     
@@ -108,6 +136,11 @@ public partial class SyncAnimationModel : RealtimeModel {
                     if (changed) FireAttackDidChange(attack);
                     break;
                 }
+                case (uint) PropertyID.Fall: {
+                    changed = _fallProperty.Read(stream, context);
+                    if (changed) FireFallDidChange(fall);
+                    break;
+                }
                 default: {
                     stream.SkipProperty();
                     break;
@@ -123,6 +156,7 @@ public partial class SyncAnimationModel : RealtimeModel {
     private void UpdateBackingFields() {
         _walk = walk;
         _attack = attack;
+        _fall = fall;
     }
     
 }
